@@ -2,6 +2,7 @@ package com.zipcodewilmington.phonebook;
 
 import jdk.nashorn.internal.ir.WhileNode;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -37,7 +38,7 @@ public class PhoneBook {
     }
 
     //removes an entry to the composite associate data type
-    public void removeRecord(String name, ArrayList phoneList) {
+    public void removeRecord(String name,ArrayList phoneList) {
         phoneBook.remove(name);
     }
 
@@ -54,11 +55,13 @@ public class PhoneBook {
     }
 
     //returns a name for the respective input phoneNumber
-    public String reverseLookup(ArrayList phoneNumber) {
+    public String reverseLookup(String phoneNumber) {
         String key = "";
         for (Map.Entry<String, ArrayList<String>> entry : phoneBook.entrySet())
         {
-            if (Objects.equals(phoneNumber,entry.getValue())){
+           // String phoneList = String.join(",",entry.getValue());
+
+            if (entry.getValue().toString().contains(phoneNumber)){
                 key = entry.getKey();
             }
         }
@@ -79,8 +82,8 @@ public class PhoneBook {
         }
     }
 
-    public String lookupNumbers(String name) {
-        ArrayList<String> phoneList = new ArrayList<>();
+    public String[] lookupNumbers(String name) {
+        ArrayList<String> phoneList;
 
         if (phoneBook.containsKey(name)) {
              phoneList = phoneBook.get(name);
@@ -88,13 +91,18 @@ public class PhoneBook {
         } else {
             phoneList = null;
         }
-        StringBuilder numbersString = new StringBuilder();
-        for (String num: phoneList)
-        {
-            numbersString.append(num);
-            //numbersString.append("\t");
+        String[] numbersList = new String[phoneList.size()];
+        for (int i = 0;i<phoneList.size();i++) {
+
+            numbersList[i] = phoneList.get(i);
         }
-        return numbersString.toString();
+        return numbersList;
+    }
+
+  /*  public String lookUp(){
+       String string = "";
+        return string;
+
     }
 
 
@@ -102,10 +110,6 @@ public class PhoneBook {
     public String listNames(String name) {
     String listNames = "";
     return listNames;
-    }
-
-     public String lookupNumbersFor(String name) {
-     return arrayList;
     }
 
     public String listNamesAndNumbers(String name) {

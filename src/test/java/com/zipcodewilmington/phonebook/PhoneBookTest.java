@@ -4,7 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -89,31 +91,17 @@ public class PhoneBookTest {
     }
 
     @Test
-    public void getNameFromPhoneListTest(){
-        //Given
-        String expectedName = "Sal";
-        ArrayList<String> expectedPhone = new ArrayList<>();
-        expectedPhone.add("565-343-9685");
-        //When
-        phoneBookObj.add(expectedName, expectedPhone);
-        String actualName = phoneBookObj.reverseLookup(expectedPhone);
-        //Then
-        Assert.assertEquals(expectedName,actualName);
-    }
-
-    @Test
     public void lookupNumbersTest(){
         //Given
         String expectedName = "Sal";
-        ArrayList<String> expectedPhone1 = new ArrayList<>();
-        expectedPhone1.add("111-534-5563");
+        ArrayList<String> expectedPhoneList = new ArrayList<>();
+        expectedPhoneList.add("111-534-5563");
         //When
-        String expectedPhone = "111-534-5563";
-        phoneBookObj.add(expectedName,expectedPhone1);
-        String actualPhone = phoneBookObj.lookupNumbers(expectedName);
+        phoneBookObj.add(expectedName,expectedPhoneList);
+        String[] actualPhoneList = phoneBookObj.lookupNumbers(expectedName);
+        ArrayList<String> actualPhone = new ArrayList<>(Arrays.asList(actualPhoneList));
         //Then
-        phoneBookObj.displayList();
-        Assert.assertEquals(expectedPhone,actualPhone);
+        Assert.assertEquals(expectedPhoneList,actualPhone);
     }
 
     @Test
@@ -121,12 +109,15 @@ public class PhoneBookTest {
     {
         //Given
         String expectedName = "Sal";
-        ArrayList<String> expectedPhone1 = new ArrayList<>();
-        expectedPhone1.add("111-534-5563");
+        ArrayList<String> expectedPhoneList = new ArrayList<>();
+        expectedPhoneList.add("111-534-5563");
+        expectedPhoneList.add("222-534-5563");
+        String expectedPhone = "111-534-5563";
         //When
-        phoneBookObj.add(expectedName,expectedPhone1);
-        String actualName = phoneBookObj.reverseLookup(expectedPhone1);
+        phoneBookObj.add(expectedName,expectedPhoneList);
+        String actualName = phoneBookObj.reverseLookup(expectedPhone);
         //Then
+        phoneBookObj.displayList();
         Assert.assertEquals(expectedName,actualName);
     }
 }
