@@ -81,7 +81,7 @@ public class PhoneBook {
         }
     }
 
-    public String[] lookupNumbers(String name) {
+    public String[] lookupNumbersFor(String name) {
         ArrayList<String> phoneList;
 
         if (phoneBook.containsKey(name)) {
@@ -96,6 +96,17 @@ public class PhoneBook {
             numbersList[i] = phoneList.get(i);
         }
         return numbersList;
+    }
+
+    public String lookUpNumbers(String name)
+    {
+      //  ArrayList
+        String lookUpList = "";
+        if (phoneBook.containsKey(name)) {
+            lookUpList = (phoneBook.get(name)).toString();
+        }
+
+        return lookUpList;
     }
 
     public String listNamesNumbers(){

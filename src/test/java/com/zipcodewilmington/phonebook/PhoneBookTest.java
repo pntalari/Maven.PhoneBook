@@ -94,14 +94,14 @@ public class PhoneBookTest {
     }
 
     @Test
-    public void lookupNumbersTest(){
+    public void lookupNumbersForTest(){
         //Given
         String expectedName = "Sal";
         ArrayList<String> expectedPhoneList = new ArrayList<>();
         expectedPhoneList.add("111-534-5563");
         //When
         phoneBookObj.add(expectedName,expectedPhoneList);
-        String[] actualPhoneList = phoneBookObj.lookupNumbers(expectedName);
+        String[] actualPhoneList = phoneBookObj.lookupNumbersFor(expectedName);
         ArrayList<String> actualPhone = new ArrayList<>(Arrays.asList(actualPhoneList));
         //Then
         Assert.assertEquals(expectedPhoneList,actualPhone);
@@ -160,5 +160,20 @@ public class PhoneBookTest {
         boolean actualHas = phoneBookObj.hasEntry(expectedName);
         //Then
         Assert.assertTrue(actualHas);
+    }
+
+    @Test
+    public void lookUpNumbersTest(){
+        //Given
+        String expectedName = "Sal";
+        ArrayList<String> expectedPhone = new ArrayList<String>();
+        expectedPhone.add("565-343-9685");
+        String expPhone = expectedPhone.toString();
+        //When
+        phoneBookObj.add(expectedName,expectedPhone);
+        String actualList = phoneBookObj.lookUpNumbers(expectedName);
+        //Then
+        Assert.assertEquals(expPhone,actualList);
+
     }
 }
