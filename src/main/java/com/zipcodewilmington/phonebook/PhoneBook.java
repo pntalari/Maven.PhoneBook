@@ -37,7 +37,7 @@ public class PhoneBook {
     }
 
     //removes an entry to the composite associate data type
-    public void remove(String name, ArrayList phoneList) {
+    public void removeRecord(String name, ArrayList phoneList) {
         phoneBook.remove(name);
     }
 
@@ -95,8 +95,6 @@ public class PhoneBook {
     public String listNamesAndNumbers(String name) {
      return string;
     }
-
-
 
      public void add(String, string ...) {
 

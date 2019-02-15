@@ -43,7 +43,7 @@ public class PhoneBookTest {
     }
 
     @Test
-    public void removeTest(){
+    public void removeRecordTest(){
         //Given
         String expectedName = "Ced";
         ArrayList<String> expectedPhone = new ArrayList<String>();
@@ -56,8 +56,8 @@ public class PhoneBookTest {
         phoneBookObj.add(expectedName, expectedPhone);
         phoneBookObj.add(expectedName2,expectedPhone2);
         //When
-        phoneBookObj.remove(expectedName,expectedPhone);
-        phoneBookObj.remove(expectedName2,expectedPhone2);
+        phoneBookObj.removeRecord(expectedName,expectedPhone);
+        phoneBookObj.removeRecord(expectedName2,expectedPhone2);
         boolean bool = phoneBookObj.hasEntry(expectedName);
         boolean bool2 = phoneBookObj.hasEntry(expectedName);
         //Then
