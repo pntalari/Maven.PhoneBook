@@ -48,7 +48,7 @@ public class PhoneBook {
             return phoneList;
 
         } else {
-            ArrayList<Integer> phoneList = new ArrayList<Integer>();
+            ArrayList<Integer> phoneList = new ArrayList<>();
             return phoneList;
         }
     }
@@ -76,7 +76,7 @@ public class PhoneBook {
             key = entry.getKey();
             value = entry.getValue();
 
-            finalPhone = finalPhone.join(",",value );
+            finalPhone = finalPhone.join(",",value);
             System.out.printf("Name: %s " + "Number: %s", key, finalPhone);
         }
     }
@@ -98,13 +98,22 @@ public class PhoneBook {
         return numbersList;
     }
 
+    public String listNamesNumbers(){
+        String mapList = "";
+        StringBuilder list = new StringBuilder();
+        for(Map.Entry<String, ArrayList<String>> entry: phoneBook.entrySet())
+        {
+            list.append(entry.getKey() +" "+ entry.getValue().toString().join(",",entry.getValue())+ "\n");
+
+        }
+        return list.toString();
+    }
+
   /*  public String lookUp(){
        String string = "";
         return string;
 
     }
-
-
   /*
     public String listNames(String name) {
     String listNames = "";

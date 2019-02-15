@@ -1,8 +1,10 @@
 package com.zipcodewilmington.phonebook;
 
+import com.sun.source.tree.AssertTree;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import sun.misc.ASCIICaseInsensitiveComparator;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -86,6 +88,7 @@ public class PhoneBookTest {
 
             actualPhoneList = String.join(",",actualPhone);
         }
+
         //Then
         Assert.assertEquals(expectedPhoneList,actualPhoneList);
     }
@@ -117,7 +120,45 @@ public class PhoneBookTest {
         phoneBookObj.add(expectedName,expectedPhoneList);
         String actualName = phoneBookObj.reverseLookup(expectedPhone);
         //Then
-        phoneBookObj.displayList();
         Assert.assertEquals(expectedName,actualName);
+    }
+
+    @Test
+    public void listNamesNumbers()
+    {
+        //Given
+        String expectedName1 = "Ced";
+        String expectedName2 = "Sal";
+        String expectedName3 = "John";
+        ArrayList<String> expectedPhone1 = new ArrayList<String>();
+        ArrayList<String> expectedPhone2 = new ArrayList<String>();
+        ArrayList<String> expectedPhone3 = new ArrayList<String>();
+        //When
+        expectedPhone1.add("111-111-1111");
+        expectedPhone1.add("222-222-2222");
+        expectedPhone2.add("333-333-3333");
+        expectedPhone3.add("444-444-4444");
+        phoneBookObj.add(expectedName1,expectedPhone1);
+        phoneBookObj.add(expectedName2,expectedPhone2);
+        phoneBookObj.add(expectedName3,expectedPhone2);
+        String result1 = phoneBookObj.listNamesNumbers();
+        //Then
+        Assert.assertTrue(result1.contains(expectedName1));
+        Assert.assertTrue(result1.contains(expectedName2));
+        Assert.assertTrue(result1.contains(expectedName3));
+    }
+
+    @Test
+    public void hasEntryTest() {
+        //Given
+        String expectedName = "Sal";
+        ArrayList<String> expectedPhone = new ArrayList<String>();
+        expectedPhone.add("565-343-9685");
+        expectedPhone.add("292-324-9058");
+        //When
+        phoneBookObj.add(expectedName, expectedPhone);
+        boolean actualHas = phoneBookObj.hasEntry(expectedName);
+        //Then
+        Assert.assertTrue(actualHas);
     }
 }
