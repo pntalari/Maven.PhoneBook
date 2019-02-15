@@ -69,14 +69,20 @@ public class PhoneBookTest {
     public void getPhoneNumbersListTest(){
         //Given
         String expectedName = "Ced";
-        Integer expectedPhoneList = 2;
+       // Integer expectedPhoneList = 2;
         ArrayList<String> expectedPhone = new ArrayList<String>();
         expectedPhone.add("111-343-3546");
         expectedPhone.add("911-324-9000");
+        String expectedPhoneList = String.join(",",expectedPhone);
+        //When
         PhoneBook phoneBookObj = new PhoneBook();
         phoneBookObj.add(expectedName, expectedPhone);
-        //When
-        Integer actualPhoneList = (phoneBookObj.getPhoneNumbersList(expectedName)).size();
+        ArrayList actualPhone = phoneBookObj.getPhoneNumbersList(expectedName);
+        String actualPhoneList = "";
+        for (int i =0;i<phoneBookObj.getPhoneNumbersList(expectedName).size();i++) {
+
+            actualPhoneList = String.join(",",actualPhone);
+        }
         //Then
         Assert.assertEquals(expectedPhoneList,actualPhoneList);
     }
