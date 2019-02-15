@@ -1,23 +1,22 @@
 package com.zipcodewilmington.phonebook;
 
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import jdk.nashorn.internal.ir.WhileNode;
+
+import java.util.*;
 
 /**
  * Created by leon on 1/23/18.
  */
 public class PhoneBook {
 
-    private SortedMap<String, ArrayList<String>> phoneBook = new TreeMap<String, ArrayList<String>>();
+    private SortedMap<String, ArrayList<String>> phoneBook = new TreeMap<>();
 
     //constructor
-    public  PhoneBook()
-    {}
+    public PhoneBook() {
+    }
 
     public PhoneBook(String name, ArrayList phone) {
-        this.phoneBook.put(name,phone);
+        this.phoneBook.put(name, phone);
     }
 
     //adds an entry to the composite associate data type
@@ -26,13 +25,13 @@ public class PhoneBook {
     }
 
     //Check if there is an entry in the phone book
-    public boolean hasEntry(String name)
-    {
+    public boolean hasEntry(String name) {
         boolean bool = false;
-        if (phoneBook.containsKey(name))
-        {bool = true;}
-        else
-        {bool = false;}
+        if (phoneBook.containsKey(name)) {
+            bool = true;
+        } else {
+            bool = false;
+        }
 
         return bool;
     }
@@ -54,14 +53,39 @@ public class PhoneBook {
         }
     }
 
+    //returns a name for the respective input phoneNumber
+    public String reverseLookup(ArrayList phoneNumber) {
+        String key = "";
+       // ArrayList<String> value = null;
+        for (Map.Entry<String, ArrayList<String>> entry : phoneBook.entrySet())
+        {
+            if (Objects.equals(phoneNumber,entry.getValue())){
+                key = entry.getKey();
+            }
+        }
+        return key;
+    }
+
     //print a human-readable list of all entries (names and phone numbers) in alphabetical order.
     public void displayList() {
-        System.out.printf("The list of Phone Book Names and Phone Numbers:" + phoneBook.entrySet());
+        String key = "";
+        ArrayList<String> value = null;
+        for (Map.Entry<String, ArrayList<String>> entry : phoneBook.entrySet()) {
+            key = entry.getKey();
+            value = entry.getValue();
+            System.out.printf("For Phone Book Name: %s " + ",Phone Number include: %s", key, value);
+        }
     }
+
 
     /*
     public String lookup(String name) {
         return string;
+    }
+
+    public String listNames(String name) {
+    String listNames = "";
+    return listNames;
     }
 
      public String lookupNumbersFor(String name) {
@@ -72,21 +96,13 @@ public class PhoneBook {
      return string;
     }
 
-     public String listNames(String name) {
-     return string;
-    }
+
 
      public void add(String, string ...) {
 
     }
 
      public void removeRecord(String name) {
-
-    }
-
-    //returns a name for the respective input phoneNumber
-    public void reverseLookup(String phoneNumber) {
-
 
     }
 

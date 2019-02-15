@@ -83,9 +83,23 @@ public class PhoneBookTest {
 
             actualPhoneList = String.join(",",actualPhone);
         }
+        phoneBookObj.displayList();
         //Then
         Assert.assertEquals(expectedPhoneList,actualPhoneList);
     }
 
+    @Test
+    public void getNameFromPhoneListTest(){
+        //Given
+        String expectedName = "Sal";
+        ArrayList<String> expectedPhone = new ArrayList<String>();
+        expectedPhone.add("565-343-9685");
+        //When
+        PhoneBook phoneBookObj = new PhoneBook();
+        phoneBookObj.add(expectedName, expectedPhone);
+        String actualName = phoneBookObj.reverseLookup(expectedPhone);
+        //Then
+        Assert.assertEquals(expectedName,actualName);
+    }
 
 }
