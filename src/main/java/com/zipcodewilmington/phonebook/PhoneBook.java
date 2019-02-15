@@ -56,7 +56,6 @@ public class PhoneBook {
     //returns a name for the respective input phoneNumber
     public String reverseLookup(ArrayList phoneNumber) {
         String key = "";
-       // ArrayList<String> value = null;
         for (Map.Entry<String, ArrayList<String>> entry : phoneBook.entrySet())
         {
             if (Objects.equals(phoneNumber,entry.getValue())){
@@ -70,19 +69,36 @@ public class PhoneBook {
     public void displayList() {
         String key = "";
         ArrayList<String> value = null;
+        String finalPhone = "";
         for (Map.Entry<String, ArrayList<String>> entry : phoneBook.entrySet()) {
             key = entry.getKey();
             value = entry.getValue();
-            System.out.printf("For Phone Book Name: %s " + ",Phone Number include: %s", key, value);
+
+            finalPhone = finalPhone.join(",",value );
+            System.out.printf("Name: %s " + "Number: %s", key, finalPhone);
         }
     }
 
+    public String lookupNumbers(String name) {
+        ArrayList<String> phoneList = new ArrayList<>();
 
-    /*
-    public String lookup(String name) {
-        return string;
+        if (phoneBook.containsKey(name)) {
+             phoneList = phoneBook.get(name);
+
+        } else {
+            phoneList = null;
+        }
+        StringBuilder numbersString = new StringBuilder();
+        for (String num: phoneList)
+        {
+            numbersString.append(num);
+            //numbersString.append("\t");
+        }
+        return numbersString.toString();
     }
 
+
+  /*
     public String listNames(String name) {
     String listNames = "";
     return listNames;
